@@ -1,6 +1,7 @@
 # SpaceX Insights
 A small Java Server Pages project to display interesting SpaceX information in a web dashboard.
 
+# Clone repository
 Clone this repository with
 ```
 git clone https://github.com/FlorianWeiser/spacex-insights.git
