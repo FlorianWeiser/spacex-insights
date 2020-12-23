@@ -1,7 +1,9 @@
 package main;
 
+/**
+ * Define which values can be loaded from the SpaceX API and their url
+ */
 public enum JsonData {
-	// define which values will be loaded from SpaceX API and their url
 	CORES("cores"), CREW("crew"), LAUNCHES_PAST("launches/past"), PAYLOADS("payloads"), ROCKETS("rockets");
 	
 	private final String url;

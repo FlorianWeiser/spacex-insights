@@ -8,7 +8,9 @@ import java.util.HashMap;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
 
-// this class loads the required Json objects from the SpaceX API
+/**
+ * Class loads the required Json objects from the SpaceX API and buffers them
+ */
 public class DataLoader {
 	
 	// set url from which data is loaded
@@ -17,11 +19,19 @@ public class DataLoader {
 	// store each JsonData object with associated JsonArray
 	private HashMap<JsonData, JsonArray> jsonBuffer = new HashMap<>();
 	
-	// get buffered JsonArray which belongs to a JsonData object
+	/**
+	 * Returns a buffered JsonArray which belongs to a JsonData object.
+	 * @param jd	JsonData enum whose buffered JsonArray shall be returned
+	 * @return		The associated JsonArray
+	 */
 	public JsonArray get(JsonData jd) {
 		return jsonBuffer.get(jd);
 	}
 	
+	/**
+	 * DataLoader constructor.
+	 * Sends parallel GET requests for every API information needed and stores them in a buffer.
+	 */
 	public DataLoader() {
 		// list of all JsonData that will be loaded from SpaceX API
 		JsonData[] jsonData = JsonData.class.getEnumConstants();

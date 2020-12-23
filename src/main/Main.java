@@ -15,11 +15,20 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
 
+/**
+ * Application Main class.
+ * Includes the main method and methods to process the JsonData
+ */
 public class Main {
 	
 	DataLoader data;
 	
-	// run this to only see console output (without running a web server)
+	/** 
+	 * Main method of the SpaceXInsights console based program.
+	 * Prints total payloads, number of persons sent to space, launches by month and core status probability.
+	 * This method is not executed when running the application on a Tomcat Server.
+	 * @param args	program arguments. If the first argument equals "--timing", additional timing information is printed.
+	 */
 	public static void main(String... args) {
 		long startTime = System.nanoTime();
 		
@@ -57,20 +66,34 @@ public class Main {
 		System.out.println("");
 		
 		long stopTime2 = System.nanoTime();
-		System.out.println("data loading time: " + (stopTime1 - startTime)/1000000000.0 + "s");
-		System.out.println("total execution time: " + (stopTime2 - startTime)/1000000000.0 + "s");
+		
+		if(args.length >= 1 && args[0] != null && args[0].equals("--timing")) {
+			System.out.println("data loading time: " + (stopTime1 - startTime)/1000000000.0 + "s");
+			System.out.println("total execution time: " + (stopTime2 - startTime)/1000000000.0 + "s");
+		}
 	}
 	
+	/**
+	 * Constructor of Main class.
+	 * Instantiates a new DataLoader object.
+	 */
 	public Main(){
 		data = new DataLoader();
 	}
 	
-	// change data loader
+	/**
+	 * Change the DataLoader object of the main class.
+	 * Especially useful for testing.
+	 * @param dl 	The new data loader object
+	 */
 	public void setDataLoader(DataLoader dl) {
 		this.data = dl;
 	}
 	
-	// get the total payload sent to space by each rocket type
+	/**
+	 * Returns the total payload sent to space by each rocket type.
+	 * @return	A map with the rocket types as keys and the total payload sent to space by them as values
+	 */
 	public HashMap<String, Integer> getRocketPayloads(){
 		
 		// map spaceship ids to their names
@@ -114,7 +137,11 @@ public class Main {
 		return spaceshipPayloads;
 	}
 	
-	// get the total number of persons sent to space
+	/**
+	 * Returns the total number of persons sent to space.
+	 * Launch dates must be in the past and astronauts with multiple space flights are only counted once.
+	 * @return	the SpaceX astronaut count
+	 */
 	public int personsInSpace() {
 		// return jsonBuffer.get("crew").size(); can be used if the API already only lists crew members with launches in the past
 		
@@ -139,7 +166,11 @@ public class Main {
 		return result;
 	}
 	
-	// get the number of launches grouped by their month of the year
+	/**
+	 * Returns the number of launches grouped by the month in which they took place.
+	 * @return	a map with all twelve months as keys (e.g. the month January is encoded as "01") 
+	 * 			and the number of launches in this month as associated value
+	 */
 	public Map<String, Long> getLaunchesPerMonth(){
 		// define input and output format
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
@@ -163,7 +194,10 @@ public class Main {
 		return launchesPerMonth;
 	}
 	
-	// get the percentage of each core status
+	/**
+	 * Returns which status are the most common among SpaceX cores.
+	 * @return	a mapping of all possible core status and how likely they are (as a double in percent)
+	 */
 	public Map<String, Double> getCoreStatusProbability(){
 		double totalCoreCount = data.get(JsonData.CORES).size();
 		Map<String, Double> result = new HashMap<>();
