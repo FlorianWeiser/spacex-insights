@@ -1,5 +1,5 @@
 # Documentation
-SpaceXInsights is a web dashboard which displays interesting information about SpaceX.
+SpaceXInsights is a web dashboard, which displays interesting information about SpaceX.
 This documentation contains a short description of each Java class (or other files) and their methods.
 
 ## index.jsp
@@ -8,7 +8,7 @@ The index.jsp file works like a html file, but allows using Java code in ```<% /
 In this case, it instantiates a Main class, receives all processed SpaceX API data from it and prints them to the website.
 Furthermore, the index.jsp file loads a style.css file, which defines the looks of the web dashboard.
 
-## DataLoader
+## DataLoader.java
 This class loads the required Json objects from the SpaceX API and buffers them.
 
 * **public DataLoader()**  
@@ -20,7 +20,7 @@ Returns a buffered JsonArray which belongs to a JsonData object.
 @param jd	JsonData enum whose buffered JsonArray shall be returned  
 @return		The associated JsonArray
 
-## JsonData
+## JsonData.java
 This enum defines which values can be loaded from the SpaceX API.
 The enum constants are:
 * CORES("cores")
@@ -31,7 +31,7 @@ The enum constants are:
 
 The constructor string represents the url to load the associated data from the SpaceX API.
 
-## Main
+## Main.java
 Application Main class.
 Includes the main method and methods to process JsonData.
 
@@ -57,3 +57,7 @@ Returns the number of launches grouped by the month in which they took place.
 * **public Map<String, Double> getCoreStatusProbability()**  
 Returns which status are the most common among SpaceX cores.  
 @return	a mapping of all possible core status and how likely they are (as a double in percent)
+
+## TestMain.java
+TestMain includes 8 JUnit tests for the application's Main class.  
+It mocks the DataLoader to simulate SpaceX API requests.
