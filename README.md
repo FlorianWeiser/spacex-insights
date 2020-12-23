@@ -20,8 +20,8 @@ The SpaceX Insights information can also be viewed from console without setting 
 Navigate to the export directory and execute the command ```java -jar SpaceXInsights.jar``` to test this feature.
 
 # Modify project (in Eclipse)
-To modify the project in the Eclipse IDE for Java EE Developers, you can import it with ```Import > Existing Maven Projects```.
+This section explains, how to SpaceXInsights Dashboard can be edited in Eclipse. The project, however, isn't limited to this IDE.
 
-After making changes, you can create a new .WAR file with ```Export > Web > War File```. Alternatively, you can [install a Tomcat server in Eclipse](https://www.eclipse.org/webtools/jst/components/ws/1.5/tutorials/InstallTomcat/InstallTomcat.html) and run the project there.
+To modify the project in the Eclipse IDE for Java EE Developers, import it with ```Import > Existing Maven Projects```.
 
-Modifying this project in other IDEs should work similarly.
+After making changes, a new .WAR file can be created with ```Export > Web > War File```. Alternatively, it is possible to [install a Tomcat server in Eclipse](https://www.eclipse.org/webtools/jst/components/ws/1.5/tutorials/InstallTomcat/InstallTomcat.html) and run the project there.
